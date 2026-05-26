@@ -8,5 +8,4 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/bfhl-api.jar app.jar
 EXPOSE 8080
-ENV PORT=8080
-ENTRYPOINT ["java", "-jar", "-Dserver.port=${PORT}", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
