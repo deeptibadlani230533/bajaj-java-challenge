@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/bfhl")
 public class BfhlController {
@@ -15,6 +18,16 @@ public class BfhlController {
     @Autowired
     private BfhlService bfhlService;
 
+    // Health check endpoint - GET /bfhl
+    @GetMapping
+    public ResponseEntity<Map<String, Integer>> healthCheck() {
+        System.out.println("GET /bfhl called - health check");
+        Map<String, Integer> response = new HashMap<>();
+        response.put("operation_code", 1);
+        return ResponseEntity.ok(response);
+    }
+
+    // Main endpoint - POST /bfhl
     @PostMapping
     public ResponseEntity<ResponseDTO> processData(@RequestBody RequestDTO requestDTO) {
         System.out.println("POST /bfhl called");
